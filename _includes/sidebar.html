@@ -30,9 +30,29 @@
     <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
   </nav>
 
+  <!-- 카테 고리 업데이트 sidevar nave item으로 추가함. -->
+  <div>
+    <div class="sidebar-nav-item">Category</div>
+    <nav class="content-ul">
+      {% for category in site.categories %}
+      <a href="{{ site.github.repo }}/{{ site.category_dir }}#{{ category | first }}"
+         class="sidebar-nav-item">
+                            <span class="name">
+                                {{ category | first }}
+                            </span>
+        <span class="badge">{{ category | last | size }}</span>
+      </a>
+      {% endfor %}
+    </nav>
+  </div>
+
+
   <div class="sidebar-item">
     <p>
       &copy; {{ site.time | date: '%Y' }}. All rights reserved.
     </p>
   </div>
 </div>
+
+<!-- https://hoisharka.github.io/jekyll/2017/12/03/jekyll-category-001/ 참고 -->
+
