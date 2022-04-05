@@ -33,7 +33,7 @@ plugins:
   - jekyll-feed
 
 # 사이드바 작업용
-category_dir: category/
+category_dir: category
 tag_dir: tag/
 # Exclude from processing.
 # The following items will not be processed, by default.
