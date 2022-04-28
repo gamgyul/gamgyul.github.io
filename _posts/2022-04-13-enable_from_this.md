@@ -4,7 +4,7 @@ title: c++ enable_shared_from_this
 category : C++
 ---
 
-enable_shared_frm_this를 보기전에 왜 이 키워드가 필요한지 아래 예제를 보자.
+enable_shared_from_this를 보기전에 왜 이 키워드가 필요한지 아래 예제를 보자.
 
 ```cpp
 class BadOne {
