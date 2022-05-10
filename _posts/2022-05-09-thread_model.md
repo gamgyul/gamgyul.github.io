@@ -12,13 +12,13 @@ category : CS
 먼저 M,N에 해당하는 `user thread`와 `kernel thread`의 정의를 보자. 
 어떤 문서에서는 `kernel thread`를 사용자가 생성한것이 아닌 OS의 background에서 도는 스레드이고 `user thread`는 사용자가 생성한 thread라고 표현을 하지만 multithreading model에서 말하는 `user thread`와 `kernel thread`는 layer 개념이여서 위 표현 보다는 다르게 생각해야 하는것 같다.
 
-### user thread
+### user thread(M)
 
-user thread는 사용자가 thread API를 호출하는 것을 말한다. 예를들어 c++에서 std::thread를 호출하던가 java에서 runnable의 start를 호출하는것과 같은 app단에서 호출하는 thread를 말한다.
+user thread는 사용자가 설정하는 동시성을 나누는 단위를 할한다. 즉 thread API를 호출하는 것을 말한다. 예를들어 c++에서 std::thread를 호출하던가 java에서 runnable의 start를 호출하는것과 같은 app단에서 호출하는 thread를 말한다.
 
-### kernel thread
+### kernel thread(N)
 
-kernel thread는 스케줄러에 스케줄링이 되는 스레드를 말한다. 즉 logical core에 할당되는  단위를 말한다.
+kernel thread는 스케줄러에 스케줄링이 되는 스레드를 말한다. 즉 logical core에 할당되는 단위를 말한다.
 
 ## M:1, 1:1, M:N  multithread model
 
@@ -27,12 +27,11 @@ kernel thread는 스케줄러에 스케줄링이 되는 스레드를 말한다. 
 
 ## Goroutine은 어떻게 M:N인것인가
 
-처음에 고루틴에 대해 들었을때 든 생각이 Linux가 1:1인데 고루틴은 어떻게 M:N이 될 수 있지를 생각이였었다. M:N에서 M을 나타내는 말이 user thread라고 했지만 위에 언급했던것처럼 사용자가 API를 호출하는 것이 M이고 golang에서의 GMP중 고루틴이 사용자가 호출하는 API이기 때문이다. 이 고루틴이 커널의 스케쥴러에 1:1맵핑이 된것이 아니고 go runtime scheduler에 의해서 스케쥴링되어 n개의 kernel 쓰레드를 clone을 통해 생성하기 떄문에 전체적으로 보았을때 M:N 모델이 될 수 있다.
+처음에 고루틴에 대해 들었을때 든 생각이 Linux가 1:1인데 고루틴은 어떻게 M:N이 될 수 있지를 생각이였었다. M:N에서 M을 나타내는 말이 user thread라고 했지만 위에 언급했던것처럼 사실 M은 사용자 layer에서의 동시성에 해당하는 주체(사용자가 API를 호출하는 것)이고 golang에서의 GMP중 고루틴이 사용자가 설정하는 동시성을 나누는 단위이기 때문이다. 이 고루틴이 커널의 스케쥴러에 1:1맵핑이 된것이 아니고 go runtime scheduler에 의해서 스케쥴링되어 n개의 kernel 쓰레드를 clone을 통해 생성하기 떄문에 전체적으로 보았을때 M:N 모델이 된다.
 
 
 참고 자료:
 
-https://stackoverflow.com/questions/14561311/kernel-level-thread-library
-https://stackoverflow.com/questions/8576126/what-is-the-difference-between-nptl-and-posix-threads
+what-is-the-difference-between-nptl-and-posix-threads
 https://en.wikipedia.org/wiki/Thread_(computing)#M:N_.28hybrid_threading.29
 https://sungjunyoung.github.io/posts/how-goroutine-works/
