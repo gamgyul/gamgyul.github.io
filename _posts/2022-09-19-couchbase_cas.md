@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Couchbase의 CAS
-category : CS
+category : DB
 ---
 회사에서 CouchBase라는 DB를 쓰고 있는데 이 DB를 잘 몰라서 이 DB에 대해 일부 공부한것을 적어본다. 궁금증은 CAS에서 시작이 되었다.
 
